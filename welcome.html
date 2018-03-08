@@ -1,2 +1,25 @@
-<p>just for test.</p>
-this is from welcome.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css '%}">
+</head>
+<body>
+    <h1>This is a test for django</h1>
+    {% if lastest_question_list %}
+        <ol>
+            {% for question in lastest_question_list %}
+            <li><a href="{% url 'blog:detail' question.id %}">{{question.question_text}}</a></li>
+            <!--当为blog/detail时，报错Reverse for 'blog/detail' not found. 'blog/detail' is not a valid view function or pattern name.-->
+            {% endfor %}
+        </ol>
+    {% else %}
+    <p>No blog are available</p>
+    {% endif %}
+    <p>当前时间：{{current_time}}</p>
+
+
+</body>
+</html>
